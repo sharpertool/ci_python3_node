@@ -21,4 +21,9 @@ RUN curl -sL https://sentry.io/get-cli/ | bash
 RUN sudo wget -O "/usr/local/bin/jq" "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"; \
 sudo chmod +x /usr/local/bin/jq
 
+# Install Ruby, and SASS
+RUN sudo apt-get update; \
+sudo apt-get install -y build-essential ruby ruby-dev; \
+sudo gem install sass --no-user-install;
+
 
