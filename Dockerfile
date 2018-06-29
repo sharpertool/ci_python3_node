@@ -1,4 +1,4 @@
-FROM circleci/python:3.6.3-jessie-node-browsers
+FROM circleci/python:3.6.6-jessie-node-browsers
 
 ARG H=/home/circleci
 
@@ -6,6 +6,8 @@ ARG H=/home/circleci
 RUN echo "alias ll='ls -alh'" >> ${H}/.bashrc && echo "set -o vi" >> ${H}/.bashrc
 
 RUN sudo npm install -g yarn@latest yuglify@latest
+
+RUN sudo apt-get install rsync
 
 RUN whoami; \
 cd /home/circleci; \
