@@ -5,7 +5,7 @@ ARG H=/home/circleci
 # https://releases.hashicorp.com/terraform/0.9.11/terraform_0.9.11_linux_amd64.zip
 RUN echo "alias ll='ls -alh'" >> ${H}/.bashrc && echo "set -o vi" >> ${H}/.bashrc
 
-RUN sudo npm install -g yarn@latest yuglify@latest
+RUN sudo npm install -g yarn@latest yuglify@latest && sudo chmod +x `which yarn`
 
 RUN sudo apt-get install rsync
 
