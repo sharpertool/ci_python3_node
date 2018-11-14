@@ -9,6 +9,10 @@ RUN sudo npm install -g yarn@latest yuglify@latest && sudo chmod +x /usr/local/b
 
 RUN sudo apt-get install rsync
 
+RUN sudo apt-get update --fix-missing && sudo apt-get install -y \
+  gdal-bin \
+  --no-install-recommends
+
 RUN whoami; \
 cd /home/circleci; \
 sudo pip install -U awscli boto3; \
