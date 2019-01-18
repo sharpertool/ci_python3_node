@@ -1,4 +1,4 @@
-FROM circleci/python:3.6.6-jessie-node-browsers
+FROM circleci/python:3.7.2-stretch-node-browsers
 
 ARG H=/home/circleci
 
@@ -7,7 +7,7 @@ RUN echo "alias ll='ls -alh'" >> ${H}/.bashrc && echo "set -o vi" >> ${H}/.bashr
 
 RUN sudo npm install -g yarn@latest yuglify@latest && sudo chmod +x /usr/local/bin/yarn
 
-RUN sudo apt-get install rsync
+RUN sudo apt-get install rsync jq
 
 RUN sudo apt-get update --fix-missing && sudo apt-get install -y \
   gdal-bin \
@@ -15,7 +15,7 @@ RUN sudo apt-get update --fix-missing && sudo apt-get install -y \
 
 RUN whoami; \
 cd /home/circleci; \
-sudo pip install -U awscli boto3; \
+sudo pip install -U awscli boto3 requests python-digitalocean; \
 pip --version; \
 aws --version;
 
@@ -23,13 +23,6 @@ ADD build_container.bashrc /home/circleci/.bashrc
 
 RUN curl -sL https://sentry.io/get-cli/ | bash
 
-# Install jq
-RUN sudo wget -O "/usr/local/bin/jq" "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"; \
-sudo chmod +x /usr/local/bin/jq
-
-# Install Ruby, and SASS
-RUN sudo apt-get update; \
-sudo apt-get install -y build-essential ruby ruby-dev; \
-sudo gem install sass --no-user-install;
+RUN sudo npm install -g sass
 
 
