@@ -13,6 +13,8 @@ RUN sudo apt-get update --fix-missing && sudo apt-get install -y \
   gdal-bin \
   --no-install-recommends
 
+RUN sudo apt install -y vim
+
 RUN whoami; \
 cd /home/circleci; \
 sudo pip install -U awscli boto3 requests python-digitalocean; \
