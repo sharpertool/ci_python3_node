@@ -23,7 +23,8 @@ aws --version;
 
 ADD build_container.bashrc /home/circleci/.bashrc
 
-RUN curl -sL https://sentry.io/get-cli/ | bash
+RUN curl -sL https://sentry.io/get-cli/ | bash; \
+sudo /usr/local/bin/sentry-cli update
 
 RUN sudo npm install -g sass
 
